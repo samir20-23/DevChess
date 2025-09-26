@@ -26,5 +26,5 @@ Database: MySQL / PostgreSQL / MongoDB
 Perfect for learning real-time web applications, game logic, and multiplayer interactions.
 
 
-<img width="10"  alt="GHBanner" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Y2g4ZmllbTZqOWUwYzN6YmN4ZmVicTgxZ281a215NmNlaWZhdG11biZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/1WyJrpqEI74qs/giphy.gif" />
+<img width="30"  alt="GHBanner" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Y2g4ZmllbTZqOWUwYzN6YmN4ZmVicTgxZ281a215NmNlaWZhdG11biZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/1WyJrpqEI74qs/giphy.gif" />
 </div>
