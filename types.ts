@@ -1,4 +1,3 @@
-
 export enum PieceType {
   PAWN = 'pawn',
   ROOK = 'rook',
@@ -38,6 +37,8 @@ export interface GameState {
   isCheckmate: boolean;
   isStalemate: boolean;
   isGameOver: boolean;
+  gameOverReason: 'checkmate' | 'stalemate' | 'timeout' | null;
+  winner: Color | null;
   capturedPieces: {
     [key in Color]: Piece[];
   };
@@ -48,4 +49,14 @@ export interface ChatMessage {
     sender: 'You' | 'Opponent';
     text: string;
     timestamp: string;
+}
+
+export type PieceSet = 'classic' | 'geometric';
+export type Theme = 'dark' | 'light';
+
+export interface Settings {
+  pieceSet: PieceSet;
+  theme: Theme;
+  enableAnimations: boolean;
+  enableSound: boolean;
 }

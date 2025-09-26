@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
 
@@ -24,7 +23,6 @@ const ChatWindow: React.FC = () => {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
-    // Simulate opponent's reply
     setTimeout(() => {
       const replies = ["Good move!", "Nice!", "Hmm, interesting.", "🤔", "Let's see...", "You're good at this!"];
       const opponentMessage: ChatMessage = {
@@ -53,17 +51,21 @@ const ChatWindow: React.FC = () => {
     setMessages(prev => [...prev, reactionMessage]);
   };
 
-
   return (
-    <div className="w-full bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-700 flex flex-col h-[calc(100vh-4rem-70vh)] min-h-[300px] max-h-[500px] md:h-auto md:max-h-full">
-      <h2 className="text-2xl font-bold mb-4 text-center">In-Game Chat</h2>
-      <div className="flex-grow bg-gray-800 rounded-md p-2 overflow-y-auto mb-3">
+    <div className="w-full p-4 rounded-lg flex flex-col h-[400px]" style={{ backgroundColor: 'var(--bg-secondary)', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border-primary)'}}>
+      <h2 className="text-xl font-bold mb-4 text-center border-b pb-2" style={{borderColor: 'var(--border-primary)'}}>In-Game Chat</h2>
+      <div className="flex-grow rounded-md p-2 overflow-y-auto mb-3" style={{backgroundColor: 'var(--bg-primary)'}}>
         {messages.map((msg, index) => (
           <div key={index} className={`flex flex-col mb-2 ${msg.sender === 'You' ? 'items-end' : 'items-start'}`}>
-            <div className={`rounded-lg px-3 py-2 max-w-[80%] ${msg.sender === 'You' ? 'bg-blue-600' : 'bg-gray-600'}`}>
-              <p className="text-white">{msg.text}</p>
+            <div 
+              className={`rounded-lg px-3 py-2 max-w-[80%]`}
+              style={{
+                backgroundColor: msg.sender === 'You' ? 'var(--chat-bubble-user)' : 'var(--chat-bubble-opponent)',
+              }}
+            >
+              <p style={{ color: msg.sender === 'You' ? 'var(--chat-bubble-user-text)' : 'var(--chat-bubble-opponent-text)' }}>{msg.text}</p>
             </div>
-            <span className="text-xs text-gray-400 mt-1">{msg.sender}, {msg.timestamp}</span>
+            <span className="text-xs mt-1" style={{ color: 'var(--text-secondary)'}}>{msg.sender}, {msg.timestamp}</span>
           </div>
         ))}
         <div ref={messagesEndRef} />
@@ -84,11 +86,18 @@ const ChatWindow: React.FC = () => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Type a message..."
-          className="flex-grow bg-gray-700 text-white rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-grow rounded-l-md p-2 focus:outline-none focus:ring-2"
+          // Fix: Cast style object to React.CSSProperties to allow for custom CSS properties.
+          style={{ 
+            backgroundColor: 'var(--bg-tertiary)',
+            color: 'var(--text-primary)',
+            '--tw-ring-color': 'var(--accent-primary)'
+          } as React.CSSProperties}
         />
         <button
           onClick={handleSend}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md transition-colors"
+          className="font-bold py-2 px-4 rounded-r-md transition-colors bg-[var(--accent-primary)] hover:bg-[var(--accent-primary-hover)]"
+          style={{ color: 'var(--text-inverted)' }}
         >
           Send
         </button>
